@@ -35,8 +35,35 @@ public class Main {
 				}
 				break;
 			case 2:
+				System.out.print("도서번호>> ");
+				int bno = scn.nextInt();scn.nextLine();// 1003 입력 후 엔터 치면 엔터는 처리안됨
+				System.out.print("도서제목>> ");
+				String title = scn.nextLine();
+				System.out.print("도서저자>> ");
+				String author = scn.nextLine();
+				System.out.print("도서가격>> ");
+				int price = scn.nextInt();scn.nextLine();
+				
+				Book book = new Book(bno, title, author, price);
+				if(dao.insert(book)) {
+					System.out.println("정상 등록");
+				} else {
+					System.out.println("등록 중 오류");
+				}
+				break;
 			case 3:
-			case 4:
+				System.out.print("도서번호>> ");
+				bno = scn.nextInt();scn.nextLine();
+				System.out.print("도서가격>> ");
+				price = scn.nextInt();scn.nextLine();
+				
+				if(dao.update(bno, price)) {
+					System.out.println("정상 수정");
+				} else {
+					System.out.println("수정 중 오류");
+				}
+				break;
+			case 4://삭제는 숙제, 그리고 단건조회 작성해보기
 			case 9:
 				run = false;
 			}
