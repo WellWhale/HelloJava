@@ -11,6 +11,45 @@ import java.util.ArrayList;
 public class BookDAO {
 	//메소드
 	
+	//선택조회
+	public Book findById(int id) {
+		Connection conn = DBUtil.getConnect();
+		String sql = "SELECT * FROM book WHERE id = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				int bookId = rs.getInt("id");
+				String title = rs.getString("title");
+				String author = rs.getString("author");
+				int price = rs.getInt("price");
+				
+				return new Book(bookId, title, author, price);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	//삭제
+	public boolean delete(int id) {
+		Connection conn = DBUtil.getConnect();
+		String sql = "DELETE FROM book WHERE id = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+
+			int result = pstmt.executeUpdate();
+			return result > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	//수정, 매개값(int bno, int price), 반환값(boolean)
 	public boolean update(int bno, int price) {
 		Connection conn = DBUtil.getConnect();//커넥션은 꼭 있어야됨
@@ -65,7 +104,8 @@ public class BookDAO {
 		ArrayList<Book> list = new ArrayList<Book>();// 컬렉션(Book)
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from book");
+			ResultSet rs = stmt.executeQuery("select *"
+					+ "						  from Book");
 			//반복
 			while(rs.next()) {
 				Book book = new Book();

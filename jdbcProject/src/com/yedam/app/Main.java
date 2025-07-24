@@ -63,7 +63,30 @@ public class Main {
 					System.out.println("수정 중 오류");
 				}
 				break;
-			case 4://삭제는 숙제, 그리고 단건조회 작성해보기
+			case 4:
+				System.out.print("삭제할 도서번호>> ");
+				bno = scn.nextInt(); scn.nextLine();
+
+				if (dao.delete(bno)) {
+					System.out.println("정상 삭제");
+				} else {
+					System.out.println("삭제 중 오류");
+				}
+				break;
+			case 5:
+				System.out.print("조회할 도서번호>> ");
+				bno = scn.nextInt(); scn.nextLine();
+
+				Book result = dao.findById(bno);
+				if (result != null) {
+					System.out.println("도서번호: " + result.getId());
+					System.out.println("도서제목: " + result.getTitle());
+					System.out.println("도서저자: " + result.getAuthor());
+					System.out.println("도서가격: " + result.getPrice());
+				} else {
+					System.out.println("해당 도서를 찾을 수 없습니다.");
+				}
+				break;
 			case 9:
 				run = false;
 			}
@@ -71,58 +94,7 @@ public class Main {
 		
 		System.out.println("end of program");
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-		
-		
-		
+
+		scn.close();
 	}//end main
 }//end class
-
-
-
-
-
-
-//import java.sql.Connection;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//import java.sql.Statement;
-
-
-//		DBUtil util = new DBUtil();
-//		Connection conn = util.getConnect();// DB 세션확보
-//		conn.setAutoCommit(false);
-//		try {
-//			Statement stmt = conn.createStatement();// 쿼리해석 실행 -> 결과반영
-//			int r = stmt.executeUpdate("insert into book(id, title, author) values(1010, '어린왕자', '김어린')");
-//			System.out.println("처리된 건수: " + r);
-//			if(r>0) {
-//				conn.commit();//커밋
-//			}
-//			ResultSet rs = stmt.executeQuery("select * from book");
-//			//반복문
-//			while(rs.next()) {
-//				System.out.println(rs.getInt("id") + rs.getString("title"));
-//			}
-//			System.out.println("end of data");
-//			
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
