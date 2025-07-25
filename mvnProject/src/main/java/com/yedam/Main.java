@@ -10,7 +10,13 @@ import com.yedam.mapper.BookMapper;
 import com.yedam.vo.Book;
 
 public class Main {
+	
 	public static void main(String[] args) {
+		BookControl ctrl = new BookControl();
+		ctrl.exe();
+	}
+	
+	void bachup() {
 		//RunExe는 Runnable을 구현하는 클래스
 //		Runnable exe = new RunExe(); <- Runnable 이 더 크기때문이 이렇게도 가능하다
 		// 인터페이스 < 구현클래스
@@ -29,7 +35,7 @@ public class Main {
 		//인터페이스 - 구현클래스
 		BookMapper mapper = sqlSession.getMapper(BookMapper.class);
 		Book book = mapper.selectBook(1000);//이걸 프린트하면 단건조회
-		List<Book> list = mapper.selectList();//이걸 프린트하면 전체조회
+		List<Book> list = mapper.selectList(1);//이걸 프린트하면 전체조회
 		//이게 요즘방식?
 		
 		//단건 조회

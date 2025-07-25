@@ -44,4 +44,15 @@ public class Book {
 		return "id: " + id + ", title: " + title + ", author: " + author + ", price: " + price;
 	}
 	
+	public String showBrief() {
+		return " " + id + " " + title + " " + price;
+	}
+	
+	public String showDetail() {
+		String formatStr = "도서ID: " + id + "    제목: " + title;
+		formatStr += "\n저자:   " + author + "     가격: " + price + "원";
+		return formatStr;
+				
+	}
+	
 }

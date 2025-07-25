@@ -7,5 +7,9 @@ import com.yedam.vo.Book;
 public interface BookMapper {
 	public Book selectBook(int id);//한건
 	
-	public List<Book> selectList();
+	public List<Book> selectList(int page);
+	
+	public int insertBook(Book book);
+	
+	public int deleteBook(int id);
 }
