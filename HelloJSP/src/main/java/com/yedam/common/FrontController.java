@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.control.AddBoardControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
 import com.yedam.control.RegisterControl;
@@ -37,7 +38,8 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/boardList.do", new BoardListControl());
 		map.put("/board.do", new BoardControl());
-		map.put("/register.do", new RegisterControl());
+		map.put("/register.do", new RegisterControl());//등록화면
+		map.put("/addBoard.do", new AddBoardControl());//등록처리
 	}
 	
 	@Override
