@@ -32,8 +32,12 @@
 	    </tr>
 	    <tr>
 	    	<td colspan="4" align="center">
+	    		  <!-- msg 전달값이 있으면 메세지 출력(권한 없음을 알림) -->
+	    	  	  <c:if test="${!empty msg}">
+  		            <div style="color: red;">${msg}</div>
+ 	              </c:if>
 	    	    <input type="submit" value="수정" class="btn btn-success">
-	    	    <button type="button" class="btn btn-danger">삭제</button>
+	    	    <button type="button" class="btn btn-danger" ${logId eq board_info.writer ? '' : 'disabled' }>삭제</button>
 	    	</td>
 	    </tr>
 	</table>

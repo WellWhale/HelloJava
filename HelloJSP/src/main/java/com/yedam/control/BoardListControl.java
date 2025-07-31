@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Control;
 import com.yedam.common.PageDTO;
@@ -26,6 +27,13 @@ public class BoardListControl implements Control {
 	String kw = req.getParameter("keyword");
 	
 	page = page == null ? "1" : page;
+	
+	
+	
+	HttpSession session = req.getSession();
+	String pageRe = (String) session.getAttribute("page");
+	
+	
 	
 	//SearchDTO (메소드에 전달할 파라미터)
 	SearchDTO search = new SearchDTO();
